@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {ThreeCircles} from 'react-loader-spinner';
 
 export default function HomePage() {
   const url = `https://api.thedogapi.com/v1/images/search?limit=2`;
@@ -6,10 +7,9 @@ export default function HomePage() {
 
   const [dogs, setDogs] = useState([]);
   const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetching random dog image from The Dog API
     fetch(url, {
       headers: {
         'x-api-key': apiKey
@@ -23,23 +23,34 @@ export default function HomePage() {
       })
       .then(data => {
         setDogs(data);
+        setLoading(false);
       })
       .catch(error => {
         setError(error.message);
+        setLoading(false);
       });
   }, []);
 
   return (
     <div>
       HomePage
-      <ul>
-        {dogs.map((dog) => (
-          <li key={dog.id}>
-            {dog.name}
-            <img src={dog.url} style={{ width: '150px', height: '150px' }}/>
-          </li>
-        ))}
-      </ul>
+      { error && <p>There was an error</p>}
+      { loading ?
+        <ThreeCircles 
+          visible={loading}
+          height="100"
+          width="100"
+          color="#4fa94d"
+          ariaLabel="three-circles-loading"/> :
+        <ul>
+          {dogs.map((dog) => (
+            <li key={dog.id}>
+              {dog.name}
+              <img src={dog.url} style={{ width: '150px', height: '150px' }}/>
+            </li>
+          ))}
+        </ul>
+      }
     </div>
   )
 }
