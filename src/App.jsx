@@ -3,15 +3,13 @@ import {createBrowserRouter, createRoutesFromElements, RouterProvider, Route} fr
 
 import HomePage from './pages/HomePage';
 
-const App = () => {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route>
-        <Route path='/' element={<HomePage />}>
-        </Route>
-      </Route>
-    )
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<HomePage />}>
+    </Route>
   )
+);
+const App = () => {
   return (
     <RouterProvider router={router}/>
   )
