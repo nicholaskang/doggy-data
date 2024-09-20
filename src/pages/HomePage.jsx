@@ -31,8 +31,8 @@ export default function HomePage() {
   
   return (
     <>
-      <NavBar />
       {/* { error && <p>There was an error</p>} */}
+      HomePage
       <DogList />
     </>
   )
