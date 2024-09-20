@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import NavBar from '../components/NavBar';
 import DogList from '../components/DogList';
 
 export default function HomePage() {
@@ -30,7 +31,7 @@ export default function HomePage() {
   
   return (
     <>
-      HomePage
+      <NavBar />
       {/* { error && <p>There was an error</p>} */}
       <DogList />
     </>
